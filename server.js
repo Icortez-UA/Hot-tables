@@ -13,7 +13,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 // create table array 
-var tables =[];
+var tables =[
+    {
+        name:"Jack",
+        phonenumber: "909-751-3245",
+        email:";laksdg@gmail.com",
+        customerID:"l;asdg;h"
+    }
+];
 
 // create waitlist array
 
