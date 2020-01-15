@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 // create table array 
-var table =[];
+var tables =[];
 
 // create waitlist array
 
@@ -32,15 +32,20 @@ app.get("/tables", function(req, res) {
   });
 
 
-app.get("/api/table", function(req, res) {
-   return res.json(table);
+app.get("/api/tables", function(req, res) {
+   return res.json(tables);
   });
-app.get("/api/wait", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
     return res.json(wait);
   });
 
-  // post data for reservations
+  // post data for reservations send to table 
+app.post("/api/waitlist",function(req, res){
+    var waitList = req.body;
 
+    wait.push(waitList);
+    res.json(waitList);
+})
 
 
 
