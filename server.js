@@ -14,12 +14,7 @@ app.use(express.json())
 
 // create table array 
 var tables =[
-    {
-        name:"Jack",
-        phonenumber: "909-751-3245",
-        email:";laksdg@gmail.com",
-        customerID:"l;asdg;h"
-    }
+
 ];
 
 // create waitlist array
@@ -57,6 +52,7 @@ app.post("/api/waitlist",function(req, res){
     return res.json(waitList);
 })
  app.post("/api/customerlist",function(req,res){
+   console.log("works!");
     var customerNew = req.body;
     if(tables.length >= 5){
       wait.push(customerNew);
