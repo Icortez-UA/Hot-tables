@@ -16,8 +16,8 @@
         <h2 class="text-center">Make Your Reservation</h2>
         <br>
         <div class="text-center">
-          <a href="/tables"><button type="button" class="btn btn-lg btn-danger">View Tables</button></a>
-            <a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
+            <button>View Tables</button>
+            <button>home</button> 
         </div>
       </div>
 
@@ -27,24 +27,28 @@
               <h3>Table Reservation</h3>
           </div>
       <form>
-          <div class="paenl-form">
         <div class="form-group">
-          <label for="exampleFormControlInput1">Name</label>
-          <input type="text" class="form-control" id="nameInput">
+          <label for="">Name</label>
+          <input type="text" class="form-control" id="reserve_name">
         </div>
+
         <div class="form-group">
-            <label for="exampleFormControlInput1">Phone Number</label>
-            <input type="text" class="form-control" id="phoneInput">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Email Address</label>
-            <input type="text" class="form-control" id="emailInput">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Unique ID</label>
-            <input type="text" class="form-control" id="idInput">
-          </div>
-          <button type="submit" class="button button-primary submit">Submit</button>
+          <label for="">Phone Number</label>
+          <input type="text" class="form-control" id="reserve_phone">
+        </div>
+
+        <div class="form-group">
+          <label for="">Email</label>
+          <input type="text" class="form-control" id="reserve_email">
+        </div>
+
+        <div class="form-group">
+          <label for="">Unique ID</label>
+          <input type="text" class="form-control" id="reserve_uniqueID">
+        </div>
+
+        <button type="submit" class="btn btn-primary submit">Submit</button>
+
       </form>
     </div>
 </div>
@@ -63,3 +67,40 @@
       </footer>
 </body>
 </html>
+
+<script type= "text/javascript">
+$(".submit").on("click", function () {
+
+var newReservation = {
+  customerName: $('#nameInput').val().trim(),
+  phoneNumber: $('#phoneInput').val().trim(),
+  customerEmail: $('#emailInput').val().trim(),
+  customerID: $('#idInput').val().trim()
+};
+
+console.log(newReservation);
+
+var currentURL = window.location.origin;
+
+$.post(currentURL + "/api/tables", newReservation,
+  function (data) {
+
+    if (data == true) {
+      alert("Your table is booked!")
+    }
+
+    if (data == false) {
+      alert("Sorry, you are on the wait list")
+    }
+
+    $('#reserve_name').val("");
+    $('#reserve_phone').val("");
+    $('#reserve_email').val("");
+    $('#reserve_uniqueID').val("");
+
+  });
+
+return false;
+
+});
+</script>
