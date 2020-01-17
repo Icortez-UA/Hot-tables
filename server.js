@@ -46,16 +46,31 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(wait);
   });
 
+  // post data for tables 
+  app.post("/api/tables",function(req, res){
+
+  return  res.json(table);
+})
   // post data for reservations send to table 
 app.post("/api/waitlist",function(req, res){
-    var waitList = req.body;
 
-    wait.push(waitList);
-    res.json(waitList);
+    return res.json(waitList);
 })
+ app.post("/api/customerlist",function(req,res){
+    var customerNew = req.body;
+    if(tables.length >= 5){
+      wait.push(customerNew);
+    }
+    else{
+      tables.push(customerNew);
+    }
+    res.json(customerNew);
+ })
 
-
-
+app.post("/api/clear", function(req,res){
+   wait = [];
+   tables= [];
+});
 
 
 
