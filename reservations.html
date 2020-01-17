@@ -72,17 +72,17 @@
 $(".submit").on("click", function () {
 
 var newReservation = {
-  customerName: $('#nameInput').val().trim(),
-  phoneNumber: $('#phoneInput').val().trim(),
-  customerEmail: $('#emailInput').val().trim(),
-  customerID: $('#idInput').val().trim()
+  customerName:  $('#reserve_name').val().trim(),
+  phoneNumber: $('#reserve_phone').val().trim(),
+  customerEmail: $('#reserve_email').val().trim(),
+  customerID:  $('#reserve_uniqueID').val().trim()
 };
 
 console.log(newReservation);
 
 var currentURL = window.location.origin;
 
-$.post(currentURL + "/api/tables", newReservation,
+$.post(currentURL + "/api/customerlist", newReservation,
   function (data) {
 
     if (data == true) {
